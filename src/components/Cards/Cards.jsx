@@ -48,7 +48,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [cards, setCards] = useState([]);
   // Текущий статус игры
   const [status, setStatus] = useState(STATUS_PREVIEW);
-
+  const [correctPairsCount, setCorrectPairsCount] = useState(0);
   // Дата начала игры
   const [gameStartDate, setGameStartDate] = useState(null);
   // Дата конца игры
@@ -118,13 +118,16 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     // Ищем открытые карты, у которых нет пары среди других открытых
     const openCardsWithoutPair = openCards.filter(card => {
       const sameCards = openCards.filter(openCard => card.suit === openCard.suit && card.rank === openCard.rank);
-
+      if (sameCards.length === 2) {
+        setCorrectPairsCount(correctPairsCount + 1);
+      }
       if (sameCards.length < 2) {
         return true;
       }
 
       return false;
     });
+
     //Закрытие карт в лёгком режиме
     if (easyMode) {
       if (openCards.length === 2) {
@@ -234,7 +237,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       </div>
 
       {easyMode ? <p className={styles.lives}>Осталось {lives} попытки</p> : null}
-
+      <p className={styles.lives}>Отгаданно правильно пар: {correctPairsCount}</p>
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
