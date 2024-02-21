@@ -76,6 +76,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setGameEndDate(null);
     setTimer(getTimerValue(null, null));
     setStatus(STATUS_PREVIEW);
+    setLives(easyMode ? 3 : 0);
   }
 
   /**
@@ -114,7 +115,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // Открытые карты на игровом поле
     const openCards = nextCards.filter(card => card.open);
-
     // Ищем открытые карты, у которых нет пары среди других открытых
     const openCardsWithoutPair = openCards.filter(card => {
       const sameCards = openCards.filter(openCard => card.suit === openCard.suit && card.rank === openCard.rank);
@@ -125,6 +125,18 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
       return false;
     });
+    //Закрытие карт в лёгком режиме
+    if (easyMode) {
+      if (openCards.length === 2) {
+        setTimeout(() => {
+          const resetCards = nextCards.map(card => ({
+            ...card,
+            open: false,
+          }));
+          setCards(resetCards);
+        }, 1000);
+      }
+    }
 
     //вычитание жизни
 

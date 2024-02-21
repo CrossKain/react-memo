@@ -28,7 +28,7 @@ export function SelectLevelPage() {
               <p className={styles.numberGame}>1</p>
             </label>
           </li>
-          <li className={styles.level}>
+          <li className={classNames(styles.level, { [styles.active]: level === "6" })}>
             <label className={styles.label}>
               <input
                 className={styles.inputLevel}
@@ -40,7 +40,7 @@ export function SelectLevelPage() {
               <p className={styles.numberGame}>2</p>
             </label>
           </li>
-          <li className={styles.level}>
+          <li className={classNames(styles.level, { [styles.active]: level === "9" })}>
             <label className={styles.label}>
               <input
                 className={styles.inputLevel}
