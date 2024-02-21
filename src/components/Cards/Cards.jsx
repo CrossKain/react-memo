@@ -63,6 +63,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   function finishGame(status = STATUS_LOST) {
     setGameEndDate(new Date());
     setStatus(status);
+    setCorrectPairsCount(0);
   }
   function startGame() {
     const startDate = new Date();
@@ -70,6 +71,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setGameStartDate(startDate);
     setTimer(getTimerValue(startDate, null));
     setStatus(STATUS_IN_PROGRESS);
+    setCorrectPairsCount(0);
   }
   function resetGame() {
     setGameStartDate(null);
@@ -77,6 +79,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setTimer(getTimerValue(null, null));
     setStatus(STATUS_PREVIEW);
     setLives(easyMode ? 3 : 0);
+    setCorrectPairsCount(0);
   }
 
   /**
@@ -118,9 +121,11 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     // Ищем открытые карты, у которых нет пары среди других открытых
     const openCardsWithoutPair = openCards.filter(card => {
       const sameCards = openCards.filter(openCard => card.suit === openCard.suit && card.rank === openCard.rank);
+
       if (sameCards.length === 2) {
         setCorrectPairsCount(correctPairsCount + 1);
       }
+
       if (sameCards.length < 2) {
         return true;
       }
