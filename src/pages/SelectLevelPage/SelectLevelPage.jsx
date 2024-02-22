@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import styles from "./SelectLevelPage.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GameContext } from "../../Context/Context";
 import classNames from "classnames";
+import { router } from "../../router";
+import { LeaderBoard } from "../LeaderBoard/LeaderBoard";
 
 export function SelectLevelPage() {
   const [level, setLevel] = useState("3");
@@ -68,6 +70,7 @@ export function SelectLevelPage() {
         <button onClick={startGame} className={styles.buttonGame}>
           Начать игру
         </button>
+        <Link to={"/LeaderBoard"}>Посмотреть рейтинг лидеров</Link>
       </div>
     </div>
   );

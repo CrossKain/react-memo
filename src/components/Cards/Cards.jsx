@@ -53,13 +53,21 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [gameStartDate, setGameStartDate] = useState(null);
   // Дата конца игры
   const [gameEndDate, setGameEndDate] = useState(null);
+  const [isLeader, setIsLeadder] = useState(false);
 
   // Стейт для таймера, высчитывается в setInteval на основе gameStartDate и gameEndDate
   const [timer, setTimer] = useState({
     seconds: 0,
     minutes: 0,
   });
-
+  useEffect(() => {
+    if (cards.length) {
+      const mneyjepohyikakblyatnazivaetsya = cards.filter(elem => elem.open).length;
+      if (mneyjepohyikakblyatnazivaetsya && mneyjepohyikakblyatnazivaetsya % 2 === 0) {
+        setCorrectPairsCount(prev => prev + 1);
+      }
+    }
+  }, [cards]);
   function finishGame(status = STATUS_LOST) {
     setGameEndDate(new Date());
     setStatus(status);
@@ -118,35 +126,35 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // Открытые карты на игровом поле
     const openCards = nextCards.filter(card => card.open);
+
     // Ищем открытые карты, у которых нет пары среди других открытых
     const openCardsWithoutPair = openCards.filter(card => {
       const sameCards = openCards.filter(openCard => card.suit === openCard.suit && card.rank === openCard.rank);
 
-      if (sameCards.length === 2) {
-        setCorrectPairsCount(correctPairsCount + 1);
-      }
+      if (easyMode) {
+        setTimeout(() => {
+          if (openCards.length === 2) {
+            const resetCards = nextCards.map(card => {
+              if (openCardsWithoutPair.some(openCard => openCard.id === card.id)) {
+                return {
+                  ...card,
+                  open: false,
+                };
+              }
 
+              return card;
+            });
+
+            setCards(resetCards);
+          }
+        }, 300);
+      }
       if (sameCards.length < 2) {
         return true;
       }
 
       return false;
     });
-
-    //Закрытие карт в лёгком режиме
-    if (easyMode) {
-      if (openCards.length === 2) {
-        setTimeout(() => {
-          const resetCards = nextCards.map(card => ({
-            ...card,
-            open: false,
-          }));
-          setCards(resetCards);
-        }, 1000);
-      }
-    }
-
-    //вычитание жизни
 
     const playerLost = openCardsWithoutPair.length >= 2;
 
@@ -246,6 +254,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
+            isLeader={isLeader}
             isWon={status === STATUS_WON}
             gameDurationSeconds={timer.seconds}
             gameDurationMinutes={timer.minutes}
