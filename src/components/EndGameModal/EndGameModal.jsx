@@ -4,7 +4,7 @@ import { Button } from "../Button/Button";
 
 import deadImageUrl from "./images/dead.png";
 import celebrationImageUrl from "./images/celebration.png";
-import { addLeader } from "../../API";
+// import { addLeader } from "../../API";
 
 export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick, isLeader }) {
   const title = isLeader ? "Вы попали на лидерборд" : isWon ? "Вы победили!" : "Вы проиграли!";
@@ -20,7 +20,7 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
       <img className={styles.image} src={imgSrc} alt={imgAlt} />
       <h2 className={styles.title}>{title}</h2>
       <input type="text" placeholder="Введите имя" />
-      <button onClick={() => addLeader({name, time})}>Записать в лидеры</button>
+      {/* <button onClick={() => addLeader({name, time})}>Записать в лидеры</button> */}
       <p className={styles.description}>Затраченное время:</p>
 
       <div className={styles.time}>

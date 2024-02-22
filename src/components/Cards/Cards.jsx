@@ -53,21 +53,23 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [gameStartDate, setGameStartDate] = useState(null);
   // Дата конца игры
   const [gameEndDate, setGameEndDate] = useState(null);
-  const [isLeader, setIsLeadder] = useState(false);
+  const [isLeader] = useState(false);
+
+  useEffect(() => {
+    if (cards && status === STATUS_IN_PROGRESS) {
+      const pairs = cards.filter(elem => elem.guessed).length;
+      if (pairs % 2 === 0) {
+        setCorrectPairsCount(pairs / 2);
+      }
+    }
+  }, [cards, status]);
 
   // Стейт для таймера, высчитывается в setInteval на основе gameStartDate и gameEndDate
   const [timer, setTimer] = useState({
     seconds: 0,
     minutes: 0,
   });
-  useEffect(() => {
-    if (cards.length) {
-      const mneyjepohyikakblyatnazivaetsya = cards.filter(elem => elem.open).length;
-      if (mneyjepohyikakblyatnazivaetsya && mneyjepohyikakblyatnazivaetsya % 2 === 0) {
-        setCorrectPairsCount(prev => prev + 1);
-      }
-    }
-  }, [cards]);
+
   function finishGame(status = STATUS_LOST) {
     setGameEndDate(new Date());
     setStatus(status);
@@ -102,6 +104,11 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     if (clickedCard.open) {
       return;
     }
+    let openCardsNew = cards.filter(card => card.open && !card.guessed);
+
+    if (openCardsNew.length === 2) {
+      return;
+    }
     // Игровое поле после открытия кликнутой карты
     const nextCards = cards.map(card => {
       if (card.id !== clickedCard.id) {
@@ -130,31 +137,55 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     // Ищем открытые карты, у которых нет пары среди других открытых
     const openCardsWithoutPair = openCards.filter(card => {
       const sameCards = openCards.filter(openCard => card.suit === openCard.suit && card.rank === openCard.rank);
-
-      if (easyMode) {
-        setTimeout(() => {
-          if (openCards.length === 2) {
-            const resetCards = nextCards.map(card => {
-              if (openCardsWithoutPair.some(openCard => openCard.id === card.id)) {
-                return {
-                  ...card,
-                  open: false,
-                };
-              }
-
-              return card;
-            });
-
-            setCards(resetCards);
-          }
-        }, 300);
-      }
       if (sameCards.length < 2) {
         return true;
       }
 
+      if (!easyMode) {
+        if (openCards.length > 1) {
+          const openedCards = nextCards.map(elem => {
+            if (elem.open) {
+              return {
+                ...elem,
+                open: true,
+                guessed: true,
+              };
+            } else {
+              return elem;
+            }
+          });
+          setCards(openedCards);
+        }
+      }
+
       return false;
     });
+
+    if (easyMode) {
+      setTimeout(() => {
+        const opened = cards.filter(elem => elem.open && !elem.guessed);
+        if (opened.length > 0) {
+          const resetCards = nextCards.map(card => {
+            if (openCardsWithoutPair.some(openCard => openCard.id === card.id)) {
+              return {
+                ...card,
+                open: false,
+              };
+            }
+            if (card.open) {
+              return {
+                ...card,
+                guessed: true,
+              };
+            }
+            return {
+              ...card,
+            };
+          });
+          setCards(resetCards);
+        }
+      }, 1000);
+    }
 
     const playerLost = openCardsWithoutPair.length >= 2;
 
@@ -245,6 +276,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
             open={status !== STATUS_IN_PROGRESS ? true : card.open}
             suit={card.suit}
             rank={card.rank}
+            disabled={card.disabled}
           />
         ))}
       </div>

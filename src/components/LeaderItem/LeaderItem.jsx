@@ -1,4 +1,4 @@
-export const LeaderItem = ({index, name, time}) => {
+export const LeaderItem = ({ index, name, time }) => {
   return (
     <div>
       <p>{index}</p>

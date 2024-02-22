@@ -3,8 +3,8 @@ import styles from "./SelectLevelPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { GameContext } from "../../Context/Context";
 import classNames from "classnames";
-import { router } from "../../router";
-import { LeaderBoard } from "../LeaderBoard/LeaderBoard";
+// import { router } from "../../router";
+// import { LeaderBoard } from "../LeaderBoard/LeaderBoard";
 
 export function SelectLevelPage() {
   const [level, setLevel] = useState("3");

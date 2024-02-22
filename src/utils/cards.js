@@ -44,12 +44,14 @@ export function generateDeck(pairsCount = 3) {
       suit: card.suit,
       rank: card.rank,
       open: false,
+      guessed: false,
     });
     deck.push({
       id: id++,
       suit: card.suit,
       rank: card.rank,
       open: false,
+      guessed: false,
     });
   }
 
