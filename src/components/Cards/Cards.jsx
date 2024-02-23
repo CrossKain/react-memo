@@ -6,6 +6,7 @@ import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { GameContext } from "../../Context/Context";
+import { Link } from "react-router-dom";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -53,7 +54,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [gameStartDate, setGameStartDate] = useState(null);
   // Дата конца игры
   const [gameEndDate, setGameEndDate] = useState(null);
-  const [isLeader] = useState(false);
+  let isLeader = !easyMode && pairsCount === 3 && status === STATUS_WON;
 
   useEffect(() => {
     if (cards && status === STATUS_IN_PROGRESS) {
@@ -283,6 +284,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
       {easyMode ? <p className={styles.lives}>Осталось {lives} попытки</p> : null}
       <p className={styles.lives}>Отгаданно правильно пар: {correctPairsCount}</p>
+      <Link to={"/"}>НАЗАД</Link>
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal

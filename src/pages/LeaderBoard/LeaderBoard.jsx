@@ -1,6 +1,8 @@
+import styles from "./LeaderBoard.module.css";
 import { useEffect, useState } from "react";
 import { LeaderItem } from "../../components/LeaderItem/LeaderItem";
 import { leaderBordApi } from "../../API";
+import { Link } from "react-router-dom";
 
 export const LeaderBoard = () => {
   const [leader, setLeader] = useState([]);
@@ -12,19 +14,26 @@ export const LeaderBoard = () => {
     });
   }, []);
   return (
-    <div>
-      <p>Лидерборд</p>
-      <button>начать игру</button>
+    <div className={styles.main}>
+      <div className={styles.block}>
+        <p className={styles.text}>Лидерборд</p>
+        <Link className={styles.button} to={"/"}>
+          Начать игру
+        </Link>
+      </div>
       <div>
-        <div>
-          <p></p>
-          <p></p>
-          <p></p>
+        <div className={styles.leader}>
+          <p className={styles.p}>Позиция</p>
+          <p className={styles.p}>Имя</p>
+          <p className={styles.p}>Время</p>
         </div>
         {leader.map((elem, index) => (
-          <LeaderItem key={elem.id} index={index} name={elem.name} time={elem.time} />
+          <LeaderItem key={elem.id} index={index + 1} name={elem.name} time={elem.time} />
         ))}
       </div>
+      <Link className={styles.back} to={"/"}>
+        Назад
+      </Link>
     </div>
   );
 };
