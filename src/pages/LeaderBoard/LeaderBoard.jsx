@@ -28,7 +28,7 @@ export const LeaderBoard = () => {
           <p className={styles.p}>Время</p>
         </div>
         {leader.map((elem, index) => (
-          <LeaderItem key={elem.id} index={index + 1} name={elem.name} time={elem.time} />
+          <LeaderItem key={elem.id} index={`# ${index + 1}`} name={elem.name} time={elem.time} />
         ))}
       </div>
       <Link className={styles.back} to={"/"}>
