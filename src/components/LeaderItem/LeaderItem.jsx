@@ -1,5 +1,5 @@
 import styles from "./LeaderItem.module.css";
-export const LeaderItem = ({ index, name, time }) => {
+export const LeaderItem = ({ index, name, time, achievements }) => {
   const minutes = (time / 60) << 0;
   let minutesText;
   if (minutes < 0) {
@@ -19,6 +19,7 @@ export const LeaderItem = ({ index, name, time }) => {
       <p className={styles.p}>{index}</p>
       <p>{name}</p>
       <p>{summary}</p>
+      <p>{achievements}</p>
     </div>
   );
 };

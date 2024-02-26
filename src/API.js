@@ -1,5 +1,5 @@
 export const leaderBordApi = async () => {
-  const mneyjepohyi = await fetch("https://wedev-api.sky.pro/api/leaderboard");
+  const mneyjepohyi = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard");
   const data = await mneyjepohyi.json();
   return data.leaders;
 };
@@ -7,7 +7,7 @@ export const leaderBordApi = async () => {
 export const addLeader = async ({ name, time, achievements }) => {
   const response = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard", {
     method: "POST",
-    body: JSON.stringify({ name, time, achievements: achievements }),
+    body: JSON.stringify({ name, time, achievements }),
   });
   if (response.ok) {
     const data = await response.json();
