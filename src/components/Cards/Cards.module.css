@@ -81,12 +81,10 @@
 
 .img{
   cursor: pointer;
-  background-image: url("./logo.png");
-    background-repeat: no-repeat;
+  background: transparent;
     width: 68px;
     height: 68px;
-    top: 34px;
-    left: 477px;
+    
     border-radius: 50px;
     border: 1px;
     
