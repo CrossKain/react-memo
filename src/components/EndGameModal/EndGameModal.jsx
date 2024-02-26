@@ -8,7 +8,15 @@ import { addLeader } from "../../API";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, onClick, isLeader }) {
+export function EndGameModal({
+  isWon,
+  gameDurationSeconds,
+  gameDurationMinutes,
+  onClick,
+  isLeader,
+  isTwinsOpen,
+  isOpenAllCards,
+}) {
   const [name, setName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState(null);
@@ -27,12 +35,22 @@ export function EndGameModal({ isWon, gameDurationSeconds, gameDurationMinutes, 
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
 
   const imgAlt = isWon ? "celebration emodji" : "dead emodji";
+  const achievements = () => {
+    let arrAchievements = [1, 2];
+    if (isOpenAllCards) {
+      arrAchievements.shift();
+    }
+    if (isTwinsOpen) {
+      arrAchievements.pop();
+    }
+    return arrAchievements;
+  };
 
   const handleSubmitButton = () => {
     if (!name || !name.trim()) {
       setError(<p className={styles.p}>Вы не написали ваше имя</p>);
     } else {
-      addLeader({ name, time })
+      addLeader({ name, time, achievements })
         .then(() => {
           setIsSubmitted(!isSubmitted);
           setError(null);

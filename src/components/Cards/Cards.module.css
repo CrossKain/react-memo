@@ -28,7 +28,8 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: center;
+  
   margin-bottom: 35px;
 }
 
@@ -76,4 +77,32 @@
     margin-top: 50px;
     color: #e5e5e5;
     font-size: 50px;
+}
+
+.img{
+  cursor: pointer;
+  background-image: url("./logo.png");
+    background-repeat: no-repeat;
+    width: 68px;
+    height: 68px;
+    top: 34px;
+    left: 477px;
+    border-radius: 50px;
+    border: 1px;
+    
+}
+button:hover {
+  
+  border: 1px solid green;
+}
+
+.image{
+  cursor: pointer;
+  
+  background: transparent;
+    width: 68px;
+    height: 68px;
+    
+    border-radius: 50px;
+    border: 1px;
 }
