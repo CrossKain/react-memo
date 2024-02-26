@@ -1,6 +1,6 @@
 export const leaderBordApi = async () => {
-  const mneyjepohyi = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard");
-  const data = await mneyjepohyi.json();
+  const response = await fetch("https://wedev-api.sky.pro/api/v2/leaderboard");
+  const data = await response.json();
   return data.leaders;
 };
 
