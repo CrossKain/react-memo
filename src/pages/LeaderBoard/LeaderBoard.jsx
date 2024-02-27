@@ -13,6 +13,7 @@ export const LeaderBoard = () => {
       setLeader(dataSort);
     });
   }, []);
+
   return (
     <div className={styles.main}>
       <div className={styles.block}>

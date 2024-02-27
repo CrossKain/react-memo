@@ -35,7 +35,7 @@ export function EndGameModal({
   const imgSrc = isWon ? celebrationImageUrl : deadImageUrl;
 
   const imgAlt = isWon ? "celebration emodji" : "dead emodji";
-  const achievements = () => {
+  const getAchievements = () => {
     let arrAchievements = [1, 2];
     if (isOpenAllCards) {
       arrAchievements.shift();
@@ -50,6 +50,7 @@ export function EndGameModal({
     if (!name || !name.trim()) {
       setError(<p className={styles.p}>Вы не написали ваше имя</p>);
     } else {
+      const achievements = getAchievements();
       addLeader({ name, time, achievements })
         .then(() => {
           setIsSubmitted(!isSubmitted);

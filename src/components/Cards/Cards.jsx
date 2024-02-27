@@ -127,6 +127,8 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setTimer(getTimerValue(startDate, null));
     setStatus(STATUS_IN_PROGRESS);
     setCorrectPairsCount(0);
+    setIsOpenAllCards(false);
+    setIsTwinsOpen(false);
   }
   function resetGame() {
     setGameStartDate(null);
