@@ -29,16 +29,22 @@ export const LeaderBoard = () => {
           <p className={styles.p}>Достижения</p>
           <p className={styles.p}>Время</p>
         </div>
-        {leader.map((elem, index) => (
-          <LeaderItem
-            key={elem.id}
-            index={`# ${index + 1}`}
-            name={elem.name}
-            achievements={elem.achievements}
-            time={elem.time}
-          />
-        ))}
+        {leader.map(
+          (elem, index) => (
+            console.log(elem),
+            (
+              <LeaderItem
+                key={elem.id}
+                index={`# ${index + 1}`}
+                name={elem.name}
+                achievements={elem.achievements}
+                time={elem.time}
+              />
+            )
+          ),
+        )}
       </div>
+
       <Link className={styles.back} to={"/"}>
         Назад
       </Link>
