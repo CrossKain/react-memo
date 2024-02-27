@@ -22,7 +22,7 @@ export const LeaderBoard = () => {
           Начать игру
         </Link>
       </div>
-      <div>
+      <div className={styles.vaflya}>
         <div className={styles.leader}>
           <p className={styles.p}>Позиция</p>
           <p className={styles.p}>Имя</p>
@@ -33,8 +33,8 @@ export const LeaderBoard = () => {
           <LeaderItem
             key={elem.id}
             index={`# ${index + 1}`}
-            achievements={elem.achievements}
             name={elem.name}
+            achievements={elem.achievements}
             time={elem.time}
           />
         ))}
