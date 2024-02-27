@@ -26,8 +26,8 @@ export const LeaderBoard = () => {
         <div className={styles.leader}>
           <p className={styles.p}>Позиция</p>
           <p className={styles.p}>Имя</p>
-          <p className={styles.p}>Достижения</p>
           <p className={styles.p}>Время</p>
+          <p className={styles.p}>Достижения</p>
         </div>
         {leader.map(
           (elem, index) => (

@@ -60,10 +60,12 @@
     width: 889px;
     height: 32px;
     /* Auto layout */
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 220px 220px 220px 220px;
+    align-items: start;
     justify-content: space-between;
-    align-items: flex-start;
+    align-content: space-between;
+    justify-items: start;
     padding: 15px 20px;
   
 }

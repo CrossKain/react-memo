@@ -3,10 +3,12 @@
     position: relative;
     width: 889px;
     height: 32px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 220px 220px 220px 220px;
     align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+    justify-items: start;
     padding: 15px 20px;
     border-radius: 12px;
     background: rgb(255, 255, 255);
@@ -44,5 +46,6 @@ letter-spacing: 0%;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+    height: 32px 
 }
 
