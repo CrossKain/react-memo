@@ -17,6 +17,9 @@ export function SelectLevelPage() {
     <div className={styles.container}>
       <div className={styles.modal}>
         <h1 className={styles.title}>Выбери сложность</h1>
+        {level === "3" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 3 пары карт</p>}
+        {level === "6" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 6 пар карт</p>}
+        {level === "9" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 9 пар карт</p>}
         <ul className={styles.levels}>
           <li className={classNames(styles.level, { [styles.active]: level === "3" })}>
             <label className={styles.label}>
