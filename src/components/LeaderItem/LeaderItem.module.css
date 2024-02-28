@@ -49,3 +49,10 @@ letter-spacing: 0%;
     height: 32px 
 }
 
+.blyat {
+   background-image: url(../LeaderItem/green.svg);
+}
+
+.blyad2{
+    background-image: url(../LeaderItem/green1.svg);
+}

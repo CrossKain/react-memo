@@ -42,6 +42,9 @@ export function EndGameModal({
       arrAchievements.shift();
     }
     if (isTwinsOpen) {
+      arrAchievements.shift();
+    }
+    if (easyMode) {
       arrAchievements.pop();
     }
     return arrAchievements;
@@ -67,7 +70,7 @@ export function EndGameModal({
     <div className={styles.modal}>
       <img className={styles.image} src={imgSrc} alt={imgAlt} />
       <h2 className={styles.title}>{title}</h2>
-      {isLeader && !isSubmitted && !easyMode ? (
+      {isLeader && !isSubmitted ? (
         <>
           <input
             className={styles.input}
@@ -80,7 +83,7 @@ export function EndGameModal({
             Записаться в лидеры
           </button>
         </>
-      ) : isLeader && easyMode && isSubmitted ? (
+      ) : isLeader && !isSubmitted ? (
         <p className={styles.p}>Ваш результат записан</p>
       ) : null}
       <p>{error}</p>

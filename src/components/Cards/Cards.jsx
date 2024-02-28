@@ -58,7 +58,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   const [isOpenAllCards, setIsOpenAllCards] = useState(false);
   const [isTwinsOpen, setIsTwinsOpen] = useState(false);
 
-  let isLeader = !easyMode && pairsCount === 3 && status === STATUS_WON;
+  let isLeader = pairsCount === 3 && status === STATUS_WON;
 
   const openAllCards = () => {
     setIsTimerStop(true);
