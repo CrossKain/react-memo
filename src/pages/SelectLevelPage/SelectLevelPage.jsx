@@ -67,7 +67,7 @@ export function SelectLevelPage() {
               type="checkbox"
             />
             <span className={styles.checkbox}></span>
-            <p>Легкий режим игры</p>
+            <p className={styles.easyGame}>Легкий режим игры</p>
           </label>
         </div>
         <button onClick={startGame} className={styles.buttonGame}>
