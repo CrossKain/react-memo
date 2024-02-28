@@ -495,6 +495,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
+            easyMode={easyMode}
             isOpenAllCards={isOpenAllCards}
             isTwinsOpen={isTwinsOpen}
             isLeader={isLeader}

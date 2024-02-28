@@ -16,6 +16,7 @@ export function EndGameModal({
   isLeader,
   isTwinsOpen,
   isOpenAllCards,
+  easyMode,
 }) {
   const [name, setName] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -66,7 +67,7 @@ export function EndGameModal({
     <div className={styles.modal}>
       <img className={styles.image} src={imgSrc} alt={imgAlt} />
       <h2 className={styles.title}>{title}</h2>
-      {isLeader && !isSubmitted ? (
+      {isLeader && !isSubmitted && !easyMode ? (
         <>
           <input
             className={styles.input}
@@ -79,7 +80,7 @@ export function EndGameModal({
             Записаться в лидеры
           </button>
         </>
-      ) : isLeader && isSubmitted ? (
+      ) : isLeader && easyMode && isSubmitted ? (
         <p className={styles.p}>Ваш результат записан</p>
       ) : null}
       <p>{error}</p>
