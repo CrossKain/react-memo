@@ -97,7 +97,11 @@
   background-color: #9fd9e2;
   border: 1px solid  #004980;
   position: relative;
+  font-weight: bold;
+}
 
+.checkbox:checked{
+  font-weight: bold;
 }
 
 .inputMode:checked + .checkbox::after{
@@ -109,7 +113,7 @@ bottom: 0;
 left: 0;
 right: 0;
 color: #004980;
-font-weight: 600;
+
 align-items: center;
 justify-content: center;
 font-size: 26px;
