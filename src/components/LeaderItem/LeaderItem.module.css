@@ -49,10 +49,67 @@ letter-spacing: 0%;
     height: 32px 
 }
 
-.blyat {
-   background-image: url(../LeaderItem/green.svg);
+.tooltip{
+    position: relative;
+
 }
 
-.blyad2{
-    background-image: url(../LeaderItem/green1.svg);
+.tooltip:hover::after{
+    box-sizing: border-box;
+content: "Игра пройдена в сложном режиме";
+display: block;
+position: absolute;
+width: 174px;
+height: 87px;
+border-radius: 12px;
+z-index: 1;
+background: rgb(194, 245, 255);
+padding: 15px 20px;
+top: -95px; 
+left: 18px;
+
+}
+
+.tooltip:hover::before{
+    display: block;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    background-color: rgb(194, 245, 255);
+    transform: skew(131deg) rotate(44deg);
+    top: -17px;
+    left: 21px;
+}
+
+.tooltippower{
+    position: relative;
+}
+.tooltippower:hover::after{
+    box-sizing: border-box;
+    content: "Игра пройдена без использования супер-сил";
+    display: block;
+    position: absolute;
+    width: 174px;
+    height: 87px;
+    border-radius: 12px;
+    z-index: 1;
+    background: rgb(194, 245, 255);
+    padding: 15px 20px;
+    top: -95px; 
+    left: 18px;
+    
+}
+
+
+.tooltippower:hover::before{
+    display: block;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    background-color: rgb(194, 245, 255);
+    transform: skew(131deg) rotate(44deg);
+    top: -17px;
+    left: 21px;
 }

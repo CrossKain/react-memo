@@ -140,10 +140,13 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   }
   const randomTwinsCads = () => {
     setTimeout(() => {
+      console.log(cards);
       const cardsNotGuessed = cards.filter(cards => !cards.guessed);
+      console.log(cardsNotGuessed);
       let randomIndex = Math.floor(cardsNotGuessed.length * Math.random());
       let firstCard = cardsNotGuessed[randomIndex];
       let secondCard = cardsNotGuessed.find(card => card.rank === firstCard.rank && card.suit === firstCard.suit);
+      console.log(firstCard, secondCard);
       let nextCards = cards.map(card => {
         if (secondCard.id === card.id || firstCard.id === card.id) {
           return {
@@ -152,11 +155,12 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
             guessed: true,
           };
         }
+        console.log(card);
         return card;
       });
       setCards(nextCards);
       setIsTwinsOpen(true);
-    }, 500);
+    }, 1000);
   };
 
   /**
