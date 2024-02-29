@@ -139,22 +139,24 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setCorrectPairsCount(0);
   }
   const randomTwinsCads = () => {
-    const cardsNotGuessed = cards.filter(cards => !cards.guessed);
-    let randomIndex = Math.floor(cardsNotGuessed.length * Math.random());
-    let firstCard = cardsNotGuessed[randomIndex];
-    let secondCard = cardsNotGuessed.find(card => card.rank === firstCard.rank && card.suit === firstCard.suit);
-    let nextCards = cards.map(card => {
-      if (secondCard.id === card.id || firstCard.id === card.id) {
-        return {
-          ...card,
-          open: true,
-          guessed: true,
-        };
-      }
-      return card;
-    });
-    setCards(nextCards);
-    setIsTwinsOpen(true);
+    setTimeout(() => {
+      const cardsNotGuessed = cards.filter(cards => !cards.guessed);
+      let randomIndex = Math.floor(cardsNotGuessed.length * Math.random());
+      let firstCard = cardsNotGuessed[randomIndex];
+      let secondCard = cardsNotGuessed.find(card => card.rank === firstCard.rank && card.suit === firstCard.suit);
+      let nextCards = cards.map(card => {
+        if (secondCard.id === card.id || firstCard.id === card.id) {
+          return {
+            ...card,
+            open: true,
+            guessed: true,
+          };
+        }
+        return card;
+      });
+      setCards(nextCards);
+      setIsTwinsOpen(true);
+    }, 500);
   };
 
   /**
