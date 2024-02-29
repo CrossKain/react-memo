@@ -1,0 +1,115 @@
+.main {
+    
+    position: relative;
+    width: 889px;
+    height: 32px;
+    display: grid;
+    grid-template-columns: 220px 220px 220px 220px;
+    align-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+    justify-items: start;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgb(255, 255, 255);
+}
+
+.p{
+ /* ab98awj_918... */
+position: static;
+width: 324px;
+height: 32px;
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
+
+
+
+/* Inside Auto Layout */
+
+
+
+
+color: rgb(0, 0, 0);
+font-family: Poppins;
+font-size: 24px;
+font-weight: 400;
+line-height: 32px;
+letter-spacing: 0%;
+
+}
+
+.achiv{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px 
+}
+
+.tooltip{
+    position: relative;
+
+}
+
+.tooltip:hover::after{
+    box-sizing: border-box;
+content: "Игра пройдена в сложном режиме";
+display: block;
+position: absolute;
+width: 174px;
+height: 87px;
+border-radius: 12px;
+z-index: 1;
+background: rgb(194, 245, 255);
+padding: 15px 20px;
+top: -95px; 
+left: 18px;
+
+}
+
+.tooltip:hover::before{
+    display: block;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    background-color: rgb(194, 245, 255);
+    transform: skew(131deg) rotate(44deg);
+    top: -17px;
+    left: 21px;
+}
+
+.tooltippower{
+    position: relative;
+}
+.tooltippower:hover::after{
+    box-sizing: border-box;
+    content: "Игра пройдена без использования супер-сил";
+    display: block;
+    position: absolute;
+    width: 174px;
+    height: 87px;
+    border-radius: 12px;
+    z-index: 1;
+    background: rgb(194, 245, 255);
+    padding: 15px 20px;
+    top: -95px; 
+    left: 18px;
+    
+}
+
+
+.tooltippower:hover::before{
+    display: block;
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 14px;
+    background-color: rgb(194, 245, 255);
+    transform: skew(131deg) rotate(44deg);
+    top: -17px;
+    left: 21px;
+}

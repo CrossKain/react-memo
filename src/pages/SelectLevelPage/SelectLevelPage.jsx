@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import styles from "./SelectLevelPage.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GameContext } from "../../Context/Context";
 import classNames from "classnames";
+// import { router } from "../../router";
+// import { LeaderBoard } from "../LeaderBoard/LeaderBoard";
 
 export function SelectLevelPage() {
   const [level, setLevel] = useState("3");
@@ -15,6 +17,9 @@ export function SelectLevelPage() {
     <div className={styles.container}>
       <div className={styles.modal}>
         <h1 className={styles.title}>Выбери сложность</h1>
+        {level === "3" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 3 пары карт</p>}
+        {level === "6" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 6 пар карт</p>}
+        {level === "9" && <p className={styles.hiddenParagraph}>На этом уровне Вам необходимо угадать 9 пар карт</p>}
         <ul className={styles.levels}>
           <li className={classNames(styles.level, { [styles.active]: level === "3" })}>
             <label className={styles.label}>
@@ -28,7 +33,7 @@ export function SelectLevelPage() {
               <p className={styles.numberGame}>1</p>
             </label>
           </li>
-          <li className={styles.level}>
+          <li className={classNames(styles.level, { [styles.active]: level === "6" })}>
             <label className={styles.label}>
               <input
                 className={styles.inputLevel}
@@ -40,7 +45,7 @@ export function SelectLevelPage() {
               <p className={styles.numberGame}>2</p>
             </label>
           </li>
-          <li className={styles.level}>
+          <li className={classNames(styles.level, { [styles.active]: level === "9" })}>
             <label className={styles.label}>
               <input
                 className={styles.inputLevel}
@@ -62,12 +67,16 @@ export function SelectLevelPage() {
               type="checkbox"
             />
             <span className={styles.checkbox}></span>
-            <p>Легкий режим игры</p>
+            <p className={styles.easyGame}>Легкий режим игры</p>
           </label>
+          {easyMode && <p className={styles.hiddenParagraph}>Теперь у Вас есть 3 попытки</p>}
         </div>
         <button onClick={startGame} className={styles.buttonGame}>
           Начать игру
         </button>
+        <Link to={"/LeaderBoard"}>
+          <p className={styles.linkp}>Посмотреть рейтинг лидеров</p>
+        </Link>
       </div>
     </div>
   );

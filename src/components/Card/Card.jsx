@@ -40,13 +40,13 @@ const OpenCard = ({ rank, suit }) => {
   );
 };
 
-const ClosedCard = ({ onClick }) => (
-  <button onClick={onClick} className={cn(styles.card, styles.cardClosed)}>
+const ClosedCard = ({ onClick, disabled }) => (
+  <button disabled={disabled} onClick={onClick} className={cn(styles.card, styles.cardClosed)}>
     <img src={cardShirtImageUrl} alt="card shirt" />
   </button>
 );
 
-export function Card({ onClick, suit, rank, open }) {
+export function Card({ onClick, suit, rank, open, disabled }) {
   return (
     <div>
       <div
@@ -56,7 +56,7 @@ export function Card({ onClick, suit, rank, open }) {
       >
         <div className={styles.flipper}>
           <div className={styles.front}>
-            <ClosedCard onClick={onClick} />
+            <ClosedCard disabled={disabled} onClick={onClick} />
           </div>
           <div className={styles.back}>
             {/* Защита от читерства через dev tools: Скрываем масть и ранг пока карта не открыта */}
